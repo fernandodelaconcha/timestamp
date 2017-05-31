@@ -1,10 +1,10 @@
-const express = require('express')
-const app = express()
+// Basic require imports for Node.js
+var express = require("express");
+var bodyParser = require("body-parser");
+var cors = require("cors");
 
-app.get('/', function (req, res) {
-  res.send('Hello World!')
-})
+// create an instance of express and instantiate bodyparser and cors
 
-app.listen(8080, function () {
-  console.log('Example app listening on port 8080!')
-})
+var app = module.exports = express();
+app.user(bodyParser.json());
+app.user(cors());
