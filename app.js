@@ -9,8 +9,10 @@ var app = module.exports = express();
 app.use(bodyParser.json());
 app.use(cors());
 
-app.get('/dateValues/:dataVal', function(req,res,next){
-    var dateVal = req.params.dataVal;
+app.get('/dateValues/:dateVal', function(req,res,next){
+    var dateVal = req.params.dateVal;
+    var unixDate;
+    var naturalDate;
     var dateFormattingOptions = {
         year : 'numeric',
         month : 'long',
@@ -18,12 +20,12 @@ app.get('/dateValues/:dataVal', function(req,res,next){
     };
     
     if(isNaN(dateVal)){
-        var naturalDate = new Date(dateVal);
+        naturalDate = new Date(dateVal);
         naturalDate = naturalDate.toLocaleDateString('en-us',dateFormattingOptions);
-        var unixDate = new Date(dateVal).getTime()/1000;
+        unixDate = new Date(dateVal).getTime()/1000;
     } else {
-        var unixDate = dateVal;
-        var naturalDate = new Date(dateVal * 1000);
+        unixDate = dateVal;
+        naturalDate = new Date(dateVal * 1000);
         naturalDate = naturalDate.toLocaleDateString('en-us',dateFormattingOptions);
     }
     
